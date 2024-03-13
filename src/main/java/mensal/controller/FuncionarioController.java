@@ -56,7 +56,7 @@ public class FuncionarioController {
 	}
 	
 	@GetMapping("/findById/{id}")
-	public ResponseEntity<Funcionario>findById(@PathVariable long id){
+	public ResponseEntity<Funcionario>findById(@PathVariable Long id){
 		try {
 			Funcionario obj = this.service.findById(id);
 			return new ResponseEntity<Funcionario>(obj, HttpStatus.OK);
@@ -66,7 +66,7 @@ public class FuncionarioController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> delete(@PathVariable long id){
+	public ResponseEntity<String> delete(@PathVariable Long id){
 		try {
 			String msg = this.service.delete(id);
 			return new ResponseEntity<String>(msg, HttpStatus.OK);

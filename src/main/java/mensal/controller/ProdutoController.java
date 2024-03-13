@@ -56,7 +56,7 @@ public class ProdutoController {
 	}
 	
 	@GetMapping("/findById/{id}")
-	public ResponseEntity<Produto>findById(@PathVariable long id){
+	public ResponseEntity<Produto>findById(@PathVariable Long id){
 		try {
 			Produto obj = this.service.findById(id);
 			return new ResponseEntity<Produto>(obj, HttpStatus.OK);
@@ -66,7 +66,7 @@ public class ProdutoController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> delete(@PathVariable long id){
+	public ResponseEntity<String> delete(@PathVariable Long id){
 		try {
 			String msg = this.service.delete(id);
 			return new ResponseEntity<String>(msg, HttpStatus.OK);

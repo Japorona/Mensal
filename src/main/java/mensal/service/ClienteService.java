@@ -26,7 +26,8 @@ public class ClienteService {
 		public String update(long id, Cliente obj) {
 			obj.setId(id);
 			this.repository.save(obj);
-			return "Cliente não encontrado para alterar";
+			return "Cliente atualizado!";
+			
 		}
 		
 		public Cliente findById(long id) {
@@ -36,6 +37,6 @@ public class ClienteService {
 		
 		public String delete(long id) {
 			this.repository.deleteById(id);
-			return "Cliente não encontrado para deletar";
+			return "Cliente encontrado para deletar";
 		}	
 	}

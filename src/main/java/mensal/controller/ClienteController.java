@@ -40,8 +40,7 @@ public class ClienteController {
 			String msg = this.service.update(id, obj);
 			return new ResponseEntity<String>(msg, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<String>("Não foi possivel atualizar a lista. "+e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);		}
 	}
 	
 	@GetMapping("/listAll")
@@ -55,7 +54,7 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/findById/{id}")
-	public ResponseEntity<Cliente>findById(@PathVariable long id){
+	public ResponseEntity<Cliente>findById(@PathVariable Long id){
 		try {
 			Cliente obj = this.service.findById(id);
 			return new ResponseEntity<Cliente>(obj, HttpStatus.OK);
@@ -65,7 +64,7 @@ public class ClienteController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> delete(@PathVariable long id){
+	public ResponseEntity<String> delete(@PathVariable Long id){
 		try {
 			String msg = this.service.delete(id);
 			return new ResponseEntity<String>(msg, HttpStatus.OK);

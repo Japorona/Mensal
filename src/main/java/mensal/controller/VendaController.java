@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import mensal.entity.Produto;
 import mensal.entity.Venda;
 import mensal.service.VendaService;
 
@@ -24,10 +25,19 @@ public class VendaController {
 	
 	@Autowired
 	private VendaService service;
+	private Produto[] produtos;
 	
 	@PostMapping("/save")
 	public ResponseEntity<String> save(@RequestBody Venda obj){
 		try {
+			double valorTotal = 0;
+			
+			produtos = null;
+			for (Produto produto : produtos) {
+			    valorTotal += produto.getValor();
+			}
+			
+			obj.setValorTotal(valorTotal);
 			String msg = this.service.save(obj);
 			return new ResponseEntity<String>(msg, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -56,7 +66,7 @@ public class VendaController {
 	}
 	
 	@GetMapping("/findById/{id}")
-	public ResponseEntity<Venda>findById(@PathVariable long id){
+	public ResponseEntity<Venda>findById(@PathVariable Long id){
 		try {
 			Venda obj = this.service.findById(id);
 			return new ResponseEntity<Venda>(obj, HttpStatus.OK);
@@ -66,7 +76,7 @@ public class VendaController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> delete(@PathVariable long id){
+	public ResponseEntity<String> delete(@PathVariable Long id){
 		try {
 			String msg = this.service.delete(id);
 			return new ResponseEntity<String>(msg, HttpStatus.OK);
