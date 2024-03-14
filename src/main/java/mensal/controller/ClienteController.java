@@ -1,6 +1,7 @@
 package mensal.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import mensal.entity.Cliente;
 import mensal.service.ClienteService;
@@ -72,4 +74,23 @@ public class ClienteController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}	
+	@GetMapping("/findOlderClient/{idade}")
+	public ResponseEntity<List<Cliente>> findOlderClient(@PathVariable int idade){
+		try {
+			List<Cliente> lista = this.service.findOlderClient(idade);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	 @GetMapping("/cpf/{cpf}")
+	    public ResponseEntity<Cliente> encontrarClientePorCpf(@PathVariable String cpf) {
+	        Optional<Cliente> cliente = Optional.empty();
+	        if (cliente.isPresent()) {
+	            return new ResponseEntity<>(cliente.get(), HttpStatus.OK);
+	        } else {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        }
+	    }
+
 }

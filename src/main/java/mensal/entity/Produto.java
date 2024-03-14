@@ -18,13 +18,10 @@ public class Produto {
 
     private String nome;
 
-    private double valor;
+    private float valor;
 
     @ManyToMany(mappedBy = "produtos")
     private List<Venda> vendas;
-
-    @ManyToMany
-    private List<Produto> produtosRelacionados;
 
     public Long getId() {
         return id;
@@ -46,7 +43,7 @@ public class Produto {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(float valor) {
         this.valor = valor;
     }
 
@@ -56,13 +53,5 @@ public class Produto {
 
     public void setVendas(List<Venda> vendas) {
         this.vendas = vendas;
-    }
-
-    public List<Produto> getProdutosRelacionados() {
-        return produtosRelacionados;
-    }
-
-    public void setProdutosRelacionados(List<Produto> produtosRelacionados) {
-        this.produtosRelacionados = produtosRelacionados;
     }
 }

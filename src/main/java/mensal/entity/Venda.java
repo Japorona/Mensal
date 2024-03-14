@@ -2,7 +2,7 @@ package mensal.entity;
 
 import java.util.List;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -25,22 +25,24 @@ public class Venda {
 
     private double valorTotal;
     
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "cliente_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("vendas")
+    //@JoinColumn(name = "cliente_id")
     private Cliente cliente;
     
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "funcionario_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("vendas")
+    //@JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("vendas")
     @JoinTable
     (
         name = "venda_produto",
         joinColumns = @JoinColumn(name = "venda_id"),
         inverseJoinColumns = @JoinColumn(name = "produto_id")
     )
-
     private List<Produto> produtos;
     
 	public Cliente getCliente() {

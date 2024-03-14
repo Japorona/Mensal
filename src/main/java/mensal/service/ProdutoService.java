@@ -16,7 +16,7 @@ public class ProdutoService {
 		
 		public String save(Produto obj) {
 			this.repository.save(obj);
-			return obj.getNome() + " Funcionário salvo com sucesso.";
+			return obj.getNome() + " Produto salvo com sucesso.";
 		}
 		
 		public List<Produto> listAll(){
@@ -26,7 +26,7 @@ public class ProdutoService {
 		public String update(long id, Produto obj) {
 			obj.setId(id);
 			this.repository.save(obj);
-			return "Funcionário não encontrado para alterar";
+			return "Produto não encontrado para alterar";
 		}
 		
 		public Produto findById(long id) {
@@ -36,6 +36,6 @@ public class ProdutoService {
 		
 		public String delete(long id) {
 			this.repository.deleteById(id);
-			return "Funcionário não encontrado para deletar";
+			return "Produto não encontrado para deletar";
 		}	
 	}

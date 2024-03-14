@@ -16,14 +16,13 @@ public class Funcionario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-
     private String nome;
 
     private int idade;
 
     private String matricula;
     
-    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "funcionario")
     private List<Venda> vendas;
     
 	public Long getId() {

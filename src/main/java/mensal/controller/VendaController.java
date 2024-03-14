@@ -30,14 +30,14 @@ public class VendaController {
 	@PostMapping("/save")
 	public ResponseEntity<String> save(@RequestBody Venda obj){
 		try {
-			double valorTotal = 0;
+			//double valorTotal = 0;
 			
-			produtos = null;
+			/*produtos = null;
 			for (Produto produto : produtos) {
 			    valorTotal += produto.getValor();
-			}
+			}*/
 			
-			obj.setValorTotal(valorTotal);
+			//obj.setValorTotal(valorTotal);
 			String msg = this.service.save(obj);
 			return new ResponseEntity<String>(msg, HttpStatus.CREATED);
 		} catch (Exception e) {
