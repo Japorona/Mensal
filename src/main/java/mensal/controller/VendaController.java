@@ -83,5 +83,15 @@ public class VendaController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-	}	
+	}
+	
+	@GetMapping("/findByEndereco/{enderecoEntrega}")
+	public ResponseEntity<List<Venda>> findByEnderecoEntrega(@PathVariable String enderecoEntrega){
+		try {
+			List<Venda> lista = this.service.findByEnderecoEntrega(enderecoEntrega);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
 }

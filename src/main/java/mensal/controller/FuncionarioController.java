@@ -1,6 +1,7 @@
 package mensal.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import mensal.entity.Funcionario;
 import mensal.service.FuncionarioService;
@@ -73,5 +75,24 @@ public class FuncionarioController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-	}	
+	}
+	
+	@GetMapping("/findByNome/{nome}")
+	public ResponseEntity<List<Funcionario>> findByNome(@PathVariable String nome){
+		try {
+			List<Funcionario> lista = this.service.findByNome(nome);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	 @GetMapping("/findByMatricula/{matricula}")
+	    public ResponseEntity<Funcionario> findByMatricula(@PathVariable String matricula) {
+	        Optional<Funcionario> funcionario = Optional.empty();
+	        if (funcionario.isPresent()) {
+	            return new ResponseEntity<>(funcionario.get(), HttpStatus.OK);
+	        } else {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        }
+	    }
 }

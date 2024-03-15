@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import mensal.entity.Funcionario;
 import mensal.repository.FuncionarioRepository;
 
@@ -37,5 +38,14 @@ public class FuncionarioService {
 		public String delete(long id) {
 			this.repository.deleteById(id);
 			return "Funcionário não encontrado para deletar";
+		}	
+		
+		public List<Funcionario> findByNome(String nome) {
+			return this.repository.findByNome(nome);
+	
+		}
+
+		public List<Funcionario> findByMatricula(String matricula) {
+	        return this.repository.findByMatricula(matricula);
 		}	
 	}

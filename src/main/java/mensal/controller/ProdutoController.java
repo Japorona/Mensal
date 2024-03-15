@@ -2,6 +2,7 @@ package mensal.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import mensal.entity.Produto;
 import mensal.service.ProdutoService;
@@ -74,4 +76,26 @@ public class ProdutoController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}	
+	
+	@GetMapping("/findByName/{name}")
+	public ResponseEntity<List<Produto>> findByNome(@PathVariable String nome){
+		try {
+			List<Produto> lista = this.service.findByNome(nome);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/findByValor/{valor}")
+	public ResponseEntity<List<Produto>> findByValor(@PathVariable float valor){
+		try {
+			List<Produto> lista = this.service.findByValor(valor);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+
+
 }

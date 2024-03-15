@@ -37,5 +37,13 @@ public class ProdutoService {
 		public String delete(long id) {
 			this.repository.deleteById(id);
 			return "Produto não encontrado para deletar";
+		}
+		public List<Produto> findByNome(String nome) {
+			return this.repository.findByNome(nome);
+	
+		}
+
+		public List<Produto> findByValor(float valor) {
+	        return this.repository.findByValor(valor);
 		}	
 	}

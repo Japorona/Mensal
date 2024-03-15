@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import mensal.entity.Venda;
 import mensal.repository.VendaRepository;
 
@@ -49,4 +50,9 @@ public class VendaService {
 			return "Venda não encontrada para deletar.";
 		}
 	}	
+	
+	public List<Venda> findByEnderecoEntrega(String enderecoEntrega) {
+		return this.repository.findByEnderecoEntrega(enderecoEntrega);
+
+	}
 }
