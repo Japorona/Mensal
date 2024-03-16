@@ -9,19 +9,26 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private Long id;
-
+    
+    @NotBlank (message = "O nome nao pode estar em branco")
     private String nome;
-
+    
+    @NotBlank (message = "O cpf nao pode estar em branco")
     private String cpf;
 
+    @NotNull (message = "Idade nao pode estar em branco")
     private int idade;
 
+    @NotBlank (message = "O telefone nao pode estar em branco")
     private String telefone;
     
     @OneToMany(mappedBy = "cliente")

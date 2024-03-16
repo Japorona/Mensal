@@ -8,6 +8,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table
@@ -15,9 +17,11 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
+    @NotBlank (message = "O nome nao pode estar em branco")
     private String nome;
-
+    
+    @NotNull (message = "O valor nao pode estar em branco")
     private float valor;
 
     @ManyToMany(mappedBy = "produtos")

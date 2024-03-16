@@ -13,6 +13,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 
 @Entity
@@ -21,8 +23,10 @@ public class Venda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @NotBlank (message = "endereco de entrega nao pode estar em branco")
     private String enderecoEntrega;
 
+    @NotNull (message = "O valor nao pode estar em branco")
     private double valorTotal;
     
     @ManyToOne(cascade = CascadeType.ALL)
